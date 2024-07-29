@@ -165,7 +165,7 @@ jobs:
 
           latest_version="$(curl -s \
                               -H "Accept: application/vnd.github+json" \
-                              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                              -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
                               https://api.github.com/repos/${armvirt_tarfile_repo}/releases?per_page=100 |
                               jq '.[]' |
                               jq -s --arg RTK "${releases_tag_keywords}" '.[] | select(.tag_name | contains($RTK))' |
@@ -218,7 +218,7 @@ jobs:
           allowUpdates: true
           removeArtifacts: false
           replacesArtifacts: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
           body: |
             ### OpenWrt Image information
             - Default IP: 192.168.1.1
